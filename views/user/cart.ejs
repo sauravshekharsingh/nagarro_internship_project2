@@ -1,0 +1,90 @@
+<%- include('./../partials/header') %>
+
+<%- include('./navbar') %>
+
+<main>
+    <h4>Cart</h4>
+
+    <% if(messages.hasOwnProperty('error')) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages['error'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if(messages.hasOwnProperty('success')) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages['success'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="row cart">
+        <div class="cart-items col-sm-12 col-xl-6">
+            <% if (cart && cart.products.length > 0) { %>
+                <% for(product of cart.products) { %>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <% if(product.pid.productImage) { %>
+                                    <img src="<%= product.pid.productImage %>" class="card-img-top">
+                                <% } else { %>
+                                    <img src="https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=" class="card-img-top">
+                                <% } %>
+                            </div>
+                            <div class="col-md-8">
+                            <div class="card-body">
+                                <a href="/user/product/<%= product.pid._id %>">
+                                    <h5 class="card-title"><%= product.pid.productName %></h5>
+                                </a>
+                                <p class="card-text h6"><%= product.pid.description.substr(0, 60) %>...</p>
+                                <span class="card-down">
+                                    <p class="card-text h4">₹ <%= product.pid.price %></p>
+                                    <p class="card-text h6">Quantity: <%= product.quantity %></p>
+                                </span>
+                                <div class="cart-btns">
+                                    <a href="/user/cart/increment/<%= product.pid._id %>" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i></a>
+                                    <% if(product.quantity > 1) { %>
+                                        <a href="/user/cart/decrement/<%= product.pid._id %>" class="btn btn-primary"><i class="bi bi-dash-circle-fill"></i></a>    
+                                    <% } else { %>
+                                        <a href="/user/cart/delete/<%= product.pid._id %>" class="btn btn-primary"><i class="bi bi-dash-circle-fill"></i></a>
+                                    <% } %>
+                                    <a href="/user/cart/delete/<%= product.pid._id %>" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <h4>No items in cart</h4>
+            <% } %>
+        </div>
+        
+        <div class="col-sm-12 col-xl-6 cart-summary">
+            <h4>Confirm your order</h4>
+
+            <div class="mt-4">
+                <p class="h6">Total Products: <%= cartCount %></p>
+                <p class="h5">Total Amount: <%= cartTotal %></p>
+            </div>
+
+            <form action="/user/orders/create" method="POST">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" class="form-control" cols="30" rows="4" required></textarea>
+
+                <label for="mode-of-payment">Mode of Payment</label>
+                <select name="modeOfPayment" id="mode-of-payment" class="form-control">
+                    <option value="pod">Pay on Delivery</option>
+                    <option value="online">Pay Online</option>
+                </select>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<%- include('./../partials/footer') %>

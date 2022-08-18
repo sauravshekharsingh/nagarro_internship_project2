@@ -1,0 +1,27 @@
+<%- include('./../partials/header') %>
+
+<%- include('./navbar') %>
+
+<main>
+    <h4>Browse All Categories</h4>
+
+    <% if(messages.hasOwnProperty('error')) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages['error'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if(messages.hasOwnProperty('success')) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages['success'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="row">
+      <h1>Order Placed</h1>
+    </div>
+</main>
+
+<%- include('./../partials/footer') %>

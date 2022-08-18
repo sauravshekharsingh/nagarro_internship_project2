@@ -1,0 +1,74 @@
+<%- include('./../partials/header') %>
+
+<%- include('./navbar') %>
+
+<main>
+    <h4>My Orders</h4>
+
+    <% if(messages.hasOwnProperty('error')) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages['error'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if(messages.hasOwnProperty('success')) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages['success'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="row">
+        <% for(let customer of customerOrders) { %>
+            <% for(let order of customer.orders) { %>
+                <div class="card" style="margin: 20px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Customer ID / Name: <%= customer.uid._id %> / <%= customer.uid.firstName %></h5>
+                        <h5 class="card-title">Order ID: <%= order._id %></h5>
+                        <p class="h6">Order Date: <%= order.date.toLocaleString() %></p>
+                        <p class="h6">Order Amount: ₹ <%= order.amount %></p>
+                        <p class="h6">Mode of payment: <%= order.modeOfPayment %></p>
+                        <p class="h6">Status: <%= order.status %></p>
+                        <p class="h6">Address: <%= order.address %></p>
+                        
+                        <% if(order.status !== 'delivered') { %>
+                            <div class="mb-4">
+                                <a href="/admin/orders/deliver/<%= customer.uid._id %>/<%= order._id %>" class="btn btn-primary">Mark as Delivered</a>
+                            </div>
+                        <% } %>
+                        
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Product Image</th>
+                                    <th>Product Id</th>
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let product of order.products) { %>
+                                <tr>
+                                    <td>
+                                        <% if(product.pid.productImage) { %>
+                                            <img src="<%= product.pid.productImage %>" height="64" width="64">
+                                        <% } else { %>
+                                            <img src="https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=" height="64" width="64">
+                                        <% } %>
+                                    </td>
+                                    <td><%= product.pid._id %></td>
+                                    <td><%= product.pid.productName %></td>
+                                    <td><%= product.quantity %></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+</main>
+
+<%- include('./../partials/footer') %>

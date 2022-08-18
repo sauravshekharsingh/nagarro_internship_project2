@@ -1,0 +1,71 @@
+<%- include('../partials/header') %>
+
+<%- include('./navbar') %>
+
+<main>
+    <h4>Edit Product</h4>
+
+    <% if(messages.hasOwnProperty('error')) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages['error'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if(messages.hasOwnProperty('success')) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages['success'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-sm-12">
+            <form action="/admin/edit/<%= product._id %>" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="productName">Product Name</label>
+                    <input type="text" class="form-control" name="productName" id="productName" placeholder="Product Name" value="<%= product.productName %>" required>
+                </div>
+        
+                <div class="mb-3">
+                    <label for="sku">Stock Units</label>
+                    <input type="text" class="form-control" name="sku" id="sku" placeholder="Stock Units" value="<%= product.sku %>" required>
+                </div>
+        
+                <div class="mb-3">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description" placeholder="Description" rows="4" required><%= product.description %></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" class="form-control">
+                        <option value="fashion">Fashion</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="books">Books</option>
+                        <option value="baby-products">Baby Products</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="decor">Decor</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                </div>
+        
+                <div class="mb-3">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" name="price" id="price" placeholder="Price" value="<%= product.price %>" required>
+                </div>
+        
+                <div class="mb-3">
+                    <label for="productImage">Product Image</label>
+                    <input type="file" class="form-control" name="productImage" id="productImage">
+                </div>
+        
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

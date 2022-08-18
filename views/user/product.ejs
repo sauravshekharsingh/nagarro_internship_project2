@@ -1,0 +1,46 @@
+<%- include('./../partials/header') %>
+
+<%- include('./navbar') %>
+
+<main>
+    <% if(messages.hasOwnProperty('error')) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages['error'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if(messages.hasOwnProperty('success')) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages['success'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="row product-page">
+        <div class="col-sm-12 col-lg-6 product-img">
+            <% if(product.productImage) { %>
+                <img src="<%= product.productImage %>" class="card-img-top">
+            <% } else { %>
+                <img src="https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=" class="card-img-top">
+            <% } %>
+        </div>
+        <div class="col-sm-12 col-lg-6 product-description">
+            <div class="product-details">
+                <h3><%= product.productName %></h3>
+                <h6><%= product.description %></h6>
+                <h6>Category: <%= product.category %></h6>
+            </div>
+            <hr>
+            <div>
+                <h4>₹ <%= product.price %></h4>
+            </div>
+            <div class="product-cta">
+                <a href="/user/buy/<%= product._id %>" class="btn btn-primary">Buy Now</a>
+                <a href="/user/cart/add/<%= product._id %>" class="btn btn-success">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('./../partials/footer') %>

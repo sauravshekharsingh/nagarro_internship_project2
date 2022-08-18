@@ -1,0 +1,41 @@
+<%- include('./partials/header') %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">E-Commerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if(role === "admin") { %>
+            <li class="nav-item">
+            <a class="nav-link" href="/admin">Back to Home</a>
+            </li>
+        <% } else { %>
+            <li class="nav-item">
+            <a class="nav-link" href="/">Back to Home</a>
+            </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+
+<main>
+    <h4>This page isn't available for you.</h4>
+
+    <% if(messages.hasOwnProperty('error')) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= messages['error'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <% if(messages.hasOwnProperty('success')) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages['success'][0] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+</main>
+
+<%- include('./partials/footer') %>
