@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const flash = require('connect-flash');
+require('dotenv').config();
 
 // Route files
 const authRoutes = require('./routes/auth');
@@ -16,7 +17,7 @@ const { isLoggedIn, isUser } = require('./middlewares');
 
 // Connect to the database
 mongoose
-  .connect('mongodb://localhost:27017/ecommerce')
+  .connect(process.env.MONGO_URL)
   .then(() => console.log('Connected to the database'))
   .catch((err) => console.log('Error connecting to the database'));
 
@@ -31,7 +32,7 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 // Express session
 app.use(
   session({
-    secret: '11e89a6b8b8e47517f36',
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
     cookie: { secure: false },
@@ -52,8 +53,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', isLoggedIn, isUser, (req, res) => {
-  res.render('user/home', { messages: req.flash() });
+app.get('/', (req, res) => {
+  res.render('role');
 });
 
 app.use('/admin', adminRoutes);

@@ -1,0 +1,29 @@
+<%- include('./partials/header') %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">E-Commerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+<main>
+    <h2 class="text-center mt-4 mb-4">Select your Role.</h2>
+
+    <div class="roles">
+        <div class="role-card">
+            <a href="/login">
+                <h4>User</h4>
+                <img src="/images/user.png" alt="" height="250">
+            </a>
+        </div>
+        <div class="role-card">
+            <a href="/admin">
+                <h4>Admin</h4>
+                <img src="/images/admin.png" alt="" height="250">
+            </a>
+        </div>
+    </div>
+</main>
+
+<%- include('./partials/footer') %>

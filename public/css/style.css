@@ -5,8 +5,8 @@ body {
   overflow-x: hidden;
 }
 
-.navbar-brand {
-  margin-left: 10px;
+nav {
+  color: white;
 }
 
 .badge {
@@ -83,3 +83,65 @@ i {
 .cart-btns {
   margin-top: 10px;
 }
+
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.role-card {
+  background-color: rgb(239, 237, 237);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.role-card a {
+  text-decoration: none;
+  color: darkblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 40px;
+}
+
+.order-placed {
+  background-color: rgb(239, 237, 237);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.order-placed i {
+  color: #20c997;
+  font-size: 48px;
+  margin: 10px;
+}
+
+/* .roles a {
+  display: flex;
+  width: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-card {
+  background-color: white;
+  margin: 10px;
+  flex-grow: 1;
+  height: 400px;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
