@@ -100,7 +100,7 @@ router.post(
         description: req.body.description,
         category: req.body.category,
         price: req.body.price,
-        productImage: `/uploads/${req.file.filename}`,
+        productImage: req.file ? `/uploads/${req.file.filename}` : null,
       });
 
       const newProduct = await product.save();
