@@ -62,6 +62,6 @@ app.use('/user', userRoutes);
 app.use(authRoutes);
 
 // Server setup
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log('Server is up and running on PORT 8000');
 });

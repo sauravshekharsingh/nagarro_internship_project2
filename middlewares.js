@@ -1,8 +1,6 @@
 const isLoggedIn = (req, res, next) => {
-  const requestedUser = req.originalUrl;
-
   if (!req.isAuthenticated()) {
-    return res.redirect(`${requestedUser}/login`);
+    return res.redirect('/login');
   }
 
   next();

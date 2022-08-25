@@ -19,10 +19,10 @@
         </div>
     <% } %>
 
-    <div class="row">
+    <div class="categories">
       <% for(let category of categories) { %>
-        <div class="col-xl-3 col-md-6 col-sm-12">
-          <div class="card" style="width: 20em; margin-top: 20px;">
+        <div>
+          <div class="card category-card" style="width: 20em; margin-top: 20px;">
             <% if(category.categoryImage) { %>
                 <img src="<%= category.categoryImage %>" class="card-img-top">
             <% } else { %>
