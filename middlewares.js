@@ -8,7 +8,13 @@ const isLoggedIn = (req, res, next) => {
 
 const isLoggedOut = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.redirect('back');
+    const role = req.user.role;
+
+    if (role == 'user') {
+      return res.redirect('/user');
+    }
+
+    return res.redirect('/admin');
   }
 
   next();

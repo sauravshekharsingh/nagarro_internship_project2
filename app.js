@@ -13,7 +13,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
 const User = require('./models/user');
-const { isLoggedIn, isUser } = require('./middlewares');
+const { isLoggedIn, isUser, isLoggedOut } = require('./middlewares');
 
 // Connect to the database
 mongoose
@@ -53,7 +53,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/', isLoggedOut, (req, res) => {
   res.render('role');
 });
 

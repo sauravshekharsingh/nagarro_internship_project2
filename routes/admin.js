@@ -78,7 +78,7 @@ router.get('/logout', (req, res) => {
 
 // Route for admin home
 router.get('/', isLoggedIn, isAdmin, (req, res) => {
-  res.render('admin/home', { messages: req.flash() });
+  return res.redirect('/admin/view');
 });
 
 // Route for admin add page
