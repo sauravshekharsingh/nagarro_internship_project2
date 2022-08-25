@@ -152,8 +152,20 @@ i {
 
 .products {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .product {
-  margin: 0 10px;
+  margin: 10px;
+}
+
+.product .card {
+  width: 18rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .product .card {
+    width: 95%;
+  }
 }

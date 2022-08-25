@@ -24,9 +24,8 @@
     
     <div class="products">
       <% for(let product of products) { %>
-        <%- console.log(product.productImage) %>
         <div class="product">
-          <div class="card" style="width: 18rem;">
+          <div class="card">
             <% if(product.productImage) { %>
                 <img src="<%= product.productImage %>" class="card-img-top">
             <% } else { %>
