@@ -188,9 +188,11 @@ router.get('/orders/pending', isLoggedIn, isAdmin, async (req, res) => {
   try {
     const orders = await Order.find().populate('uid orders.products.pid');
 
+    console.log(orders);
+
     orders.map((customer) => {
       const pendingOrders = customer.orders.filter(
-        (order) => order.status === 'processing'
+        (order) => order.status === 'In process. Will be delivered shortly.'
       );
 
       customer.orders = pendingOrders;
