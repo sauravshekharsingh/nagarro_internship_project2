@@ -18,6 +18,9 @@ npm run dev
 
 ## Environment Variables
 
+Create a '.env' file inside the root project directory and paste the below content.
+Or simply rename '.env.example' in the project directory to '.env'
+
 ```
 SESSION_SECRET=somerandomsecretstring
 MONGO_URL=mongodb://http://localhost:27017/ecommerce
