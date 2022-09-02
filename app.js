@@ -64,4 +64,5 @@ app.use(authRoutes);
 // Server setup
 app.listen(process.env.PORT || 8000, () => {
   console.log('Server is up and running on PORT 8000');
+  console.log('Go to http://localhost:8000/');
 });
