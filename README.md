@@ -1,6 +1,6 @@
 # E-Commerce Web Application
 
-A Full Stack E-Commerce web application built using HTML, CSS, JavaScript, Node.js, Express, MongoDB
+A Full Stack E-Commerce web application built using HTML, CSS, JavaScript, Node.js, Express, MongoDB, and EJS
 
 ## Installation
 
